@@ -2,13 +2,22 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { DatabaseService } from 'src/database/database.service';
+import * as bcrypt from 'bcrypt';
+
+export const roundsOfHashing = 10;
 
 @Injectable()
 export class UsersService {
   constructor(private readonly database: DatabaseService) {}
 
-  create(createUserDto: CreateUserDto) {
-    return this.database.user.create({ data: createUserDto });
+  async create(createUserDto: CreateUserDto) {
+    const hashedPassword = await bcrypt.hash(
+      createUserDto.password,
+      roundsOfHashing,
+    )
+    createUserDto.password = hashedPassword;
+
+    return await this.database.user.create({ data: createUserDto });
   }
 
   findAll() {
