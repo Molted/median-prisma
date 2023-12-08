@@ -11,6 +11,7 @@ async function bootstrap() {
     .setTitle('Median')
     .setDescription('The Median API description')
     .setVersion('0.1')
+    .addBearerAuth()
     .build();
 
   app.setGlobalPrefix('api');
