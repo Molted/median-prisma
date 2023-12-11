@@ -8,15 +8,20 @@ import {
   Delete,
   ParseIntPipe,
   NotFoundException,
+  Query,
 } from '@nestjs/common';
 import { ArticlesService } from './articles.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiExtraModels, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ArticleEntity } from './entities/article.entity';
+import { ConnectionArgsDto } from 'src/page/connection-args.dto';
+import { ApiPageResponse } from 'src/page/api-page-response.decorator';
+import { PageEntity } from 'src/page/page.entity';
 
 @Controller('articles')
 @ApiTags('articles')
+@ApiExtraModels(PageEntity)
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
@@ -38,6 +43,12 @@ export class ArticlesController {
   async findDrafts() {
     const drafts = await this.articlesService.findDrafts();
     return drafts.map((draft) => new ArticleEntity(draft));
+  }
+
+  @Get('page')
+  @ApiPageResponse(ArticleEntity)
+  async findPage(@Query() connectionArgs: ConnectionArgsDto) {
+    return await this.articlesService.findPage(connectionArgs);
   }
 
   @Get(':id')
