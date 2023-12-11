@@ -78,6 +78,126 @@ async function main() {
     },
   });
 
+  const post4 = await prisma.article.upsert({
+    where: { title: "Test Post #4" },
+    update: {
+      authorId: user2.id,
+    },
+    create: {
+      title: "Test Post #4",
+      body: 'Our engineers have been working hard, issuing new releases with many improvements...',
+      description:
+        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
+      published: true,
+      authorId: user2.id,
+    },
+  });
+
+  const post5 = await prisma.article.upsert({
+    where: { title: "Test Post #5" },
+    update: {
+      authorId: user2.id,
+    },
+    create: {
+      title: "Test Post #5",
+      body: 'Our engineers have been working hard, issuing new releases with many improvements...',
+      description:
+        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
+      published: true,
+      authorId: user2.id,
+    },
+  });
+
+  const post6 = await prisma.article.upsert({
+    where: { title: "Test Post #6" },
+    update: {
+      authorId: user2.id,
+    },
+    create: {
+      title: "Test Post #6",
+      body: 'Our engineers have been working hard, issuing new releases with many improvements...',
+      description:
+        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
+      published: true,
+      authorId: user2.id,
+    },
+  });
+
+  const post7 = await prisma.article.upsert({
+    where: { title: "Test Post #7" },
+    update: {
+      authorId: user2.id,
+    },
+    create: {
+      title: "Test Post #7",
+      body: 'Our engineers have been working hard, issuing new releases with many improvements...',
+      description:
+        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
+      published: true,
+      authorId: user2.id,
+    },
+  });
+
+  const post8 = await prisma.article.upsert({
+    where: { title: "Test Post #8" },
+    update: {
+      authorId: user2.id,
+    },
+    create: {
+      title: "Test Post #8",
+      body: 'Our engineers have been working hard, issuing new releases with many improvements...',
+      description:
+        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
+      published: false,
+      authorId: user2.id,
+    },
+  });
+
+  const post9 = await prisma.article.upsert({
+    where: { title: "Test Post #9" },
+    update: {
+      authorId: user2.id,
+    },
+    create: {
+      title: "Test Post #9",
+      body: 'Our engineers have been working hard, issuing new releases with many improvements...',
+      description:
+        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
+      published: false,
+      authorId: user2.id,
+    },
+  });
+
+  const post10 = await prisma.article.upsert({
+    where: { title: "Test Post #10" },
+    update: {
+      authorId: user2.id,
+    },
+    create: {
+      title: "Test Post #10",
+      body: 'Our engineers have been working hard, issuing new releases with many improvements...',
+      description:
+        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
+      published: false,
+      authorId: user2.id,
+    },
+  });
+
+  const post11 = await prisma.article.upsert({
+    where: { title: "Test Post #11" },
+    update: {
+      authorId: user2.id,
+    },
+    create: {
+      title: "Test Post #11",
+      body: 'Our engineers have been working hard, issuing new releases with many improvements...',
+      description:
+        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
+      published: false,
+      authorId: user2.id,
+    },
+  });
+
   console.log({ user1, user2, post1, post2, post3 });
 }
 
