@@ -16,12 +16,16 @@ export class ArticlesService {
     })
   }
 
+  private async findArticlesByCondition(args: Prisma.ArticleFindManyArgs) {
+    return (await this.database.softDelete()).article.findMany(args);
+  }
+
   async findAll() {
-    return this.database.article.findMany({ where: { published: true } });
+    return this.findArticlesByCondition({ where: { published: true } });
   }
 
   async findDrafts() {
-    return this.database.article.findMany({ where: { published: false } });
+    return this.findArticlesByCondition({ where: { published: false } });
   }
 
   async findPage(connectionArgs: ConnectionArgsDto) {
@@ -40,7 +44,7 @@ export class ArticlesService {
           }
         };
   
-        return await this.database.article.findMany(findManyArgs);
+        return await this.findArticlesByCondition(findManyArgs);
       },
       () => this.database.article.count({ /* where */ }),
       connectionArgs,
@@ -71,6 +75,6 @@ export class ArticlesService {
   }
 
   async remove(id: number) {
-    return this.database.article.delete({ where: { id } });
+    return (await this.database.softDelete()).article.delete({ where: { id } });
   }
 }

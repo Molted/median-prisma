@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { User } from "@prisma/client";
-import { Exclude } from "class-transformer";
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { User } from '@prisma/client';
+import { Exclude } from 'class-transformer';
 
 export class UserEntity implements User {
   constructor(partial: Partial<UserEntity>) {
@@ -21,6 +21,9 @@ export class UserEntity implements User {
 
   @ApiProperty()
   updatedAt: Date;
+
+  @ApiPropertyOptional({ nullable: true })
+  deletedAt: Date | null;
 
   @Exclude()
   password: string;
